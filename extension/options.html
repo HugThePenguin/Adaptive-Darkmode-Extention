@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-i18n="settingsTitle">Adaptive Dark · Settings</title><link rel="stylesheet" href="options.css"></head>
+<body>
+  <div class="workspace">
+    <header class="topbar">
+      <img src="icons/icon64.png" width="32" height="32" alt="">
+      <nav id="tabs" role="tablist" data-i18n-aria-label="settingsTabs" aria-label="Settings and websites"></nav>
+      <span id="saved" role="status" aria-live="polite" data-i18n="autoSave">Automatically saved</span>
+    </header>
+    <main id="panel" role="tabpanel" aria-labelledby="tab-global" tabindex="0">
+      <div class="heading"><p class="eyebrow" data-i18n="appName">Adaptive Dark</p><h1 id="scopeTitle"></h1><p id="scopeDescription" class="description"></p><p id="siteHost" class="host" hidden></p></div>
+      <section id="globalEnable" class="master"><div><label for="enabled" data-i18n="enableAll">Enable on all websites</label><p data-i18n="masterExplanation">Turn off to pause the extension on every website, including websites with custom settings.</p></div><input id="enabled" type="checkbox"></section>
+      <fieldset id="controls" disabled>
+        <legend class="sr-only" data-i18n="adjustments">Appearance adjustments</legend>
+        <div class="setting mode-row"><div><span class="label" data-i18n="displayMode">Display mode</span><small data-setting="mode"></small></div><div><div class="modes" role="group" data-i18n-aria-label="displayMode" aria-label="Display mode"><label><input type="radio" name="mode" value="auto"><span data-i18n="modeAuto">Auto</span></label><label><input type="radio" name="mode" value="on"><span data-i18n="modeOn">ON</span></label><label><input type="radio" name="mode" value="off"><span data-i18n="modeOff">OFF</span></label></div><p class="hint" data-i18n="autoExplanation">If the website is using dark mode, its colors are left unchanged. Dark mode detection may not always be accurate.</p></div></div>
+        <fieldset id="adjustments" aria-describedby="adjustmentReason">
+          <div class="setting"><div><label for="brightness" data-i18n="brightness">Background brightness</label><small data-setting="brightness"></small></div><div><div class="value"><output id="brightnessValue" for="brightness"></output></div><input id="brightness" type="range" min="10" max="28" step="1"><div class="ends"><span data-i18n="darker">Darker</span><span data-i18n="brighter">Brighter</span></div></div></div>
+          <div class="setting"><div><label for="temperature" data-i18n="temperature">Color temperature</label><small data-setting="temperature"></small></div><div><div class="value"><output id="temperatureValue" for="temperature"></output></div><input id="temperature" type="range" min="-100" max="100" step="1"><div class="ends"><span data-i18n="warm">Warm</span><span data-i18n="cool">Cool</span></div></div></div>
+          <div class="setting"><div><label for="contrast" data-i18n="contrast">Text contrast</label><small data-setting="contrast"></small></div><select id="contrast"><option value="4.5" data-i18n="contrastStandard">Standard (4.5 : 1)</option><option value="7" data-i18n="contrastHigh">High (7 : 1)</option></select></div>
+          <div class="setting"><div><label for="suppressImages" data-i18n="hideImages">Hide CSS background images</label><small data-setting="suppressImages"></small><p class="hint" data-i18n="imagesExplanation">This also hides background photos. Regular images, such as product photos, are kept.</p></div><input id="suppressImages" type="checkbox"></div>
+        </fieldset>
+        <p id="adjustmentReason" class="hint" role="status" hidden></p>
+      </fieldset>
+      <section class="preview-section" aria-labelledby="previewTitle"><h2 id="previewTitle" data-i18n="previewTitle">Preview</h2><div id="preview"><strong data-i18n="previewText">Comfortable backgrounds. Readable text.</strong><p data-i18n="previewExplanation">A preview of your brightness, tone and text contrast.</p></div></section>
+      <section class="reset-section" aria-labelledby="resetTitle"><div><h2 id="resetTitle" data-i18n="siteSettings">Website settings</h2><p id="resetDescription" class="description"></p></div><button id="resetSites" type="button"></button></section>
+    </main>
+    <section class="help-section" aria-labelledby="helpTitle"><h2 id="helpTitle" data-i18n="feedbackTitle">Feedback</h2><p class="description" data-i18n="settingsSupportExplanation">Have a problem or an idea? Open the support page to review diagnostic information, or send feedback on Google Forms.</p><div class="help-links"><a href="support.html" target="_blank" rel="noopener" data-i18n="supportAndDiagnostics">Support and diagnostics</a><a data-feedback="bug" target="_blank" rel="noopener noreferrer" data-i18n="reportBug">Report a bug</a><a data-feedback="feature" target="_blank" rel="noopener noreferrer" data-i18n="requestFeature">Suggest a feature</a><a data-source target="_blank" rel="noopener noreferrer" data-i18n="sourceCode">Source code on GitHub</a><span data-sponsor-section hidden><a data-sponsor target="_blank" rel="noopener noreferrer" data-i18n="sponsorAction">Support on GitHub Sponsors</a></span></div></section>
+    <footer><span data-i18n="localSettings">Settings stay in this browser.</span><a href="privacy.html" target="_blank" rel="noopener" data-i18n="privacy">Privacy</a><span id="version"></span></footer>
+  </div>
+  <script src="core.js"></script><script src="i18n.js"></script><script src="support-config.js"></script><script src="support-links.js"></script><script src="options.js"></script>
+</body></html>

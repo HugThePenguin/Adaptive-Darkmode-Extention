@@ -1,0 +1,3 @@
+/* Chromium inserts this before constructing or displaying the document.
+   The content script takes over, or releases it for OFF/native themes. */
+html:not([data-ad-started]),html:not([data-ad-started]) body{background-color:#221e1a!important;color:#eee1cc!important;color-scheme:dark!important}

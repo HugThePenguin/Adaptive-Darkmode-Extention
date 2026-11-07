@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-i18n="appName">Adaptive Dark</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+  <header><img class="mark" src="icons/icon64.png" alt="" width="36" height="36"><div><h1 data-i18n="appName">Adaptive Dark</h1><p data-i18n="popupScope">Settings for this website only</p></div></header>
+  <section class="status"><span id="dot"></span><div><strong id="status" role="status" data-i18n="loading">Loading settings…</strong><p id="hostname"></p></div></section>
+  <div class="scope-row"><span id="scopeStatus"></span><button id="editDefaults" type="button" data-i18n="editDefaults">Edit defaults</button></div>
+  <fieldset id="controls" disabled>
+    <legend class="sr-only" data-i18n="siteDisplay">This website</legend>
+    <div class="modes" role="group" aria-label="Display mode" data-i18n-aria-label="displayMode"><label><input type="radio" name="mode" value="auto"><span data-i18n="modeAuto">Auto</span></label><label><input type="radio" name="mode" value="on"><span data-i18n="modeOn">ON</span></label><label><input type="radio" name="mode" value="off"><span data-i18n="modeOff">OFF</span></label></div>
+    <p class="hint" data-i18n="autoExplanation">If the website is using dark mode, its colors are left unchanged. Dark mode detection may not always be accurate.</p>
+    <fieldset id="adjustments" disabled aria-label="Appearance adjustments" data-i18n-aria-label="adjustments" aria-describedby="adjustmentReason">
+    <label class="row" for="brightness"><span data-i18n="brightness">Background brightness</span><output id="brightnessValue"></output></label><input id="brightness" type="range" min="10" max="28" step="1"><div class="ends"><span data-i18n="darker">Darker</span><span data-i18n="brighter">Brighter</span></div>
+    <label class="row" for="temperature"><span data-i18n="temperature">Color temperature</span><output id="temperatureValue"></output></label><input id="temperature" type="range" min="-100" max="100" step="1"><div class="ends"><span data-i18n="warm">Warm</span><span data-i18n="cool">Cool</span></div>
+    <label class="row" for="contrast"><span data-i18n="contrast">Text contrast</span><select id="contrast"><option value="4.5" data-i18n="contrastStandard">Standard (4.5 : 1)</option><option value="7" data-i18n="contrastHigh">High (7 : 1)</option></select></label>
+    <details><summary data-i18n="remainingWhite">Still seeing white backgrounds?</summary><label class="check"><input id="suppressImages" type="checkbox"><span data-i18n="hideImages">Hide CSS background images</span></label><p class="hint" data-i18n="imagesExplanation">This also hides background photos. Regular images, such as product photos, are kept.</p><button id="rescan" type="button" data-i18n="rescan">Recheck page</button></details>
+    </fieldset>
+    <p id="adjustmentReason" class="hint disabled-reason" role="status" hidden></p>
+    <button id="reset" class="subtle" type="button" data-i18n="reset">Reset this website</button>
+  </fieldset>
+  <footer><span id="saved" role="status" aria-live="polite"></span><p><span data-i18n="localSettings">Settings stay in this browser.</span> <a href="privacy.html" target="_blank" rel="noopener" data-i18n="privacy">Privacy</a><a id="support" href="support.html" target="_blank" rel="noopener" data-i18n="support">Support</a></p></footer>
+  <script src="core.js"></script><script src="i18n.js"></script><script src="popup.js"></script>
+</body></html>

@@ -1,0 +1,37 @@
+{
+  "name": "adaptive-dark",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/core.test.js tests/release.test.js tests/traversal.test.js tests/support.test.js",
+    "test:browser": "node tests/browser.test.js",
+    "test:regressions": "node tests/regressions.test.js",
+    "test:popup": "node tests/popup.test.js",
+    "test:performance": "node tests/performance.test.js",
+    "test:search": "node tests/search-regressions.mjs current",
+    "test:soundhouse": "node tests/soundhouse-performance.mjs current",
+    "test:pedal": "node tests/pedal-performance.mjs current",
+    "prepare:store": "node scripts/prepare-store.mjs",
+    "test:options": "node tests/options.test.mjs",
+    "test:loading": "node tests/loading.test.mjs",
+    "test:native": "node tests/native-stability.test.mjs",
+    "test:scroll": "node tests/scroll.test.mjs",
+    "test:robustness": "node tests/robustness.test.mjs",
+    "test:http": "node tests/http-router.test.mjs",
+    "test:support": "node tests/support.test.mjs",
+    "test:ci": "npm test && npm run test:support && npm run test:http && npm run test:loading && npm run test:options && npm run test:performance && npm run test:search && npm run test:scroll && npm run test:native && npm run test:robustness"
+  },
+  "version": "1.6.0",
+  "license": "MIT",
+  "description": "Adaptive Dark: local, adjustable dark appearance for Chromium websites.",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HugThePenguin/Adaptive-Darkmode-Extention.git"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

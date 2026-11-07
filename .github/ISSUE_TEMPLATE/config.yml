@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug reports and feature requests (English)
+    url: https://forms.gle/GDChahyEi93FtYqk9
+    about: Send feedback privately using Google Forms. Diagnostic information is optional.
+  - name: 不具合・ご要望（日本語）
+    url: https://forms.gle/Ji97QbZP6zikcprw7
+    about: Googleフォームからお問い合わせください。診断情報の入力は任意です。

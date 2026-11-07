@@ -1,0 +1,314 @@
+{
+  "extensionName": {
+    "message": "やさしいダーク — Adaptive Dark"
+  },
+  "extensionDescription": {
+    "message": "明るいWebサイトを暗くし、文字のコントラストと色温度を調整。サイトがダークモードであると検出した場合はそのままにします。"
+  },
+  "appName": {
+    "message": "やさしいダーク"
+  },
+  "appSubtitle": {
+    "message": "Adaptive Dark"
+  },
+  "enableAll": {
+    "message": "すべてのサイトで有効"
+  },
+  "loading": {
+    "message": "設定を読み込み中…"
+  },
+  "siteDisplay": {
+    "message": "このサイトの表示"
+  },
+  "displayMode": {
+    "message": "表示モード"
+  },
+  "modeAuto": {
+    "message": "自動"
+  },
+  "modeOn": {
+    "message": "ON"
+  },
+  "modeOff": {
+    "message": "OFF"
+  },
+  "autoExplanation": {
+    "message": "サイトのダークモードを使用している場合、色を変更しません。ダークモードの検出は完全でない可能性があります。"
+  },
+  "adjustments": {
+    "message": "表示の調整"
+  },
+  "brightness": {
+    "message": "背景の明るさ"
+  },
+  "darker": {
+    "message": "暗め"
+  },
+  "brighter": {
+    "message": "明るめ"
+  },
+  "temperature": {
+    "message": "色の温度"
+  },
+  "warm": {
+    "message": "暖色"
+  },
+  "cool": {
+    "message": "寒色"
+  },
+  "neutral": {
+    "message": "中間"
+  },
+  "warmPercent": {
+    "message": "暖色 $AMOUNT$%",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "coolPercent": {
+    "message": "寒色 $AMOUNT$%",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "contrast": {
+    "message": "文字のコントラスト"
+  },
+  "contrastStandard": {
+    "message": "標準（4.5 : 1）"
+  },
+  "contrastHigh": {
+    "message": "高め（7 : 1）"
+  },
+  "remainingWhite": {
+    "message": "白い背景が残る場合"
+  },
+  "hideImages": {
+    "message": "CSSの背景画像を非表示"
+  },
+  "imagesExplanation": {
+    "message": "写真を含む背景画像も消えます。商品写真などの通常の画像は保持します。"
+  },
+  "rescan": {
+    "message": "ページを再解析"
+  },
+  "reset": {
+    "message": "このサイトの設定をリセット"
+  },
+  "localSettings": {
+    "message": "設定はこのブラウザ内に保存します。"
+  },
+  "privacy": {
+    "message": "プライバシー"
+  },
+  "disabledGlobal": {
+    "message": "全体スイッチがOFFのため、調整は無効です。"
+  },
+  "disabledSite": {
+    "message": "このサイトがOFFのため、調整は無効です。"
+  },
+  "disabledNative": {
+    "message": "サイト標準のダーク表示を使用中のため、調整は無効です。"
+  },
+  "disabledInactive": {
+    "message": "調整を適用していないため、設定は無効です。"
+  },
+  "statusActive": {
+    "message": "暗い表示に調整しています"
+  },
+  "statusNative": {
+    "message": "サイト標準のダーク表示を使用"
+  },
+  "statusOff": {
+    "message": "このページの調整は停止中"
+  },
+  "statusWaiting": {
+    "message": "ページを解析中…"
+  },
+  "reloadPage": {
+    "message": "ページを再読み込みしてください"
+  },
+  "saving": {
+    "message": "保存中…"
+  },
+  "saved": {
+    "message": "保存しました"
+  },
+  "saveFailed": {
+    "message": "保存できませんでした。再度お試しください。"
+  },
+  "rescanStarted": {
+    "message": "再解析を開始しました"
+  },
+  "unsupportedBrowserPage": {
+    "message": "ブラウザ内部のページには適用できません"
+  },
+  "unsupportedPage": {
+    "message": "このページは対象外です"
+  },
+  "loadFailed": {
+    "message": "設定の読み込みに失敗しました"
+  },
+  "badgeAuto": {
+    "message": "自"
+  },
+  "reasonOff": {
+    "message": "設定で停止中"
+  },
+  "reasonNative": {
+    "message": "サイト標準の暗い配色を検知"
+  },
+  "reasonActive": {
+    "message": "明るい配色を自動調整"
+  },
+  "popupScope": {
+    "message": "このサイト専用の設定"
+  },
+  "editDefaults": {
+    "message": "既定の設定を変更"
+  },
+  "usingSiteSettings": {
+    "message": "個別設定"
+  },
+  "usingDefaults": {
+    "message": "既定値を使用"
+  },
+  "settingsTitle": {
+    "message": "やさしいダーク · 設定"
+  },
+  "settingsTabs": {
+    "message": "全体設定とサイト別設定"
+  },
+  "settingsTab": {
+    "message": "設定"
+  },
+  "autoSave": {
+    "message": "変更は自動保存されます"
+  },
+  "defaultsTitle": {
+    "message": "全サイト共通の既定設定"
+  },
+  "defaultsExplanation": {
+    "message": "すべてのサイトに使う既定値を設定します。右上のペインで変更した設定は、そのサイトだけに適用されます。"
+  },
+  "siteScopeExplanation": {
+    "message": "このサイトで変更した項目だけ、既定値より優先されます。それ以外の項目は全体の既定値に従います。"
+  },
+  "masterExplanation": {
+    "message": "OFFにすると、個別設定のあるサイトを含め、すべてのサイトで拡張機能を停止します。"
+  },
+  "siteSettings": {
+    "message": "サイト別の設定"
+  },
+  "resetAllSites": {
+    "message": "すべての個別設定を削除"
+  },
+  "resetAllExplanation": {
+    "message": "$AMOUNT$ 件のサイトに個別設定があります。削除すると、すべてのサイトが現在の既定設定に戻ります。",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "resetSiteExplanation": {
+    "message": "このサイトの個別設定を削除して、現在の既定設定に戻します。"
+  },
+  "resetSaved": {
+    "message": "個別設定をリセットしました"
+  },
+  "previewTitle": {
+    "message": "プレビュー"
+  },
+  "previewText": {
+    "message": "落ち着いた背景に、読みやすい文字。"
+  },
+  "previewExplanation": {
+    "message": "明るさ・色温度・文字のコントラストを確認できます。"
+  },
+  "soundHouse": {
+    "message": "サウンドハウス"
+  },
+  "support": {
+    "message": "サポート"
+  },
+  "supportTitle": {
+    "message": "やさしいダーク · サポート"
+  },
+  "supportHeading": {
+    "message": "不具合・ご要望をお知らせください"
+  },
+  "supportIntro": {
+    "message": "不具合の報告、ご要望、ソースコードの確認はこちらから行えます。"
+  },
+  "feedbackTitle": {
+    "message": "お問い合わせ"
+  },
+  "feedbackExplanation": {
+    "message": "Googleフォームを開きます。事前入力するのは問い合わせの種類だけです。内容を確認してフォームで送信してください。情報を自動送信することはありません。"
+  },
+  "reportBug": {
+    "message": "不具合を報告"
+  },
+  "requestFeature": {
+    "message": "機能を要望"
+  },
+  "diagnosticsTitle": {
+    "message": "診断情報"
+  },
+  "diagnosticsExplanation": {
+    "message": "内容を確認し、必要に応じてフォームの診断情報欄に貼り付けてください。拡張機能・Chromiumのバージョン、OS、配色設定を含みます。サイトのアドレス、ページの本文、入力値、他のサイトの設定は含みません。"
+  },
+  "diagnosticsPage": {
+    "message": "サポートを開いたページの配色設定です。サイトのアドレスは含みません。"
+  },
+  "diagnosticsDefaults": {
+    "message": "全体の既定値を表示しています。サイトの配色設定を含める場合は、そのサイトの拡張機能ペインからサポートを開いてください。"
+  },
+  "copyDiagnostics": {
+    "message": "診断情報をコピー"
+  },
+  "refreshDiagnostics": {
+    "message": "情報を更新"
+  },
+  "diagnosticsCopied": {
+    "message": "コピーしました。フォームの診断情報欄に貼り付けてください。"
+  },
+  "diagnosticsManualCopy": {
+    "message": "自動コピーできませんでした。選択されているテキストを手動でコピーしてください。"
+  },
+  "diagnosticsFailed": {
+    "message": "診断情報を取得できませんでした。診断情報なしでもお問い合わせできます。"
+  },
+  "sourceTitle": {
+    "message": "オープンソース"
+  },
+  "sourceExplanation": {
+    "message": "やさしいダークはMITライセンスで公開しています。不具合の修正や翻訳などへのご協力も歓迎します。"
+  },
+  "sourceCode": {
+    "message": "ソースコード（GitHub）"
+  },
+  "license": {
+    "message": "MITライセンス"
+  },
+  "sponsorTitle": {
+    "message": "開発を応援"
+  },
+  "sponsorExplanation": {
+    "message": "開発支援は任意です。拡張機能は無料で利用できます。決済はGitHub Sponsorsで行います。"
+  },
+  "sponsorAction": {
+    "message": "GitHub Sponsorsで応援"
+  },
+  "supportAndDiagnostics": {
+    "message": "サポート・診断情報"
+  },
+  "settingsSupportExplanation": {
+    "message": "不具合やご要望がありましたらお知らせください。サポートページで診断情報を確認し、Googleフォームからお問い合わせできます。"
+  }
+}

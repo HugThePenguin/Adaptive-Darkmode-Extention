@@ -1,0 +1,314 @@
+{
+  "extensionName": {
+    "message": "Adaptive Dark"
+  },
+  "extensionDescription": {
+    "message": "Darken bright websites, adjust contrast and color temperature, and keep native dark themes when detected."
+  },
+  "appName": {
+    "message": "Adaptive Dark"
+  },
+  "appSubtitle": {
+    "message": "Dark mode, your way"
+  },
+  "enableAll": {
+    "message": "Enable on all websites"
+  },
+  "loading": {
+    "message": "Loading settings…"
+  },
+  "siteDisplay": {
+    "message": "This website"
+  },
+  "displayMode": {
+    "message": "Display mode"
+  },
+  "modeAuto": {
+    "message": "Auto"
+  },
+  "modeOn": {
+    "message": "ON"
+  },
+  "modeOff": {
+    "message": "OFF"
+  },
+  "autoExplanation": {
+    "message": "If the website is using dark mode, its colors are left unchanged. Dark mode detection may not always be accurate."
+  },
+  "adjustments": {
+    "message": "Appearance adjustments"
+  },
+  "brightness": {
+    "message": "Background brightness"
+  },
+  "darker": {
+    "message": "Darker"
+  },
+  "brighter": {
+    "message": "Brighter"
+  },
+  "temperature": {
+    "message": "Color temperature"
+  },
+  "warm": {
+    "message": "Warm"
+  },
+  "cool": {
+    "message": "Cool"
+  },
+  "neutral": {
+    "message": "Neutral"
+  },
+  "warmPercent": {
+    "message": "Warm $AMOUNT$%",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "coolPercent": {
+    "message": "Cool $AMOUNT$%",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "contrast": {
+    "message": "Text contrast"
+  },
+  "contrastStandard": {
+    "message": "Standard (4.5 : 1)"
+  },
+  "contrastHigh": {
+    "message": "High (7 : 1)"
+  },
+  "remainingWhite": {
+    "message": "Still seeing white backgrounds?"
+  },
+  "hideImages": {
+    "message": "Hide CSS background images"
+  },
+  "imagesExplanation": {
+    "message": "This also hides background photos. Regular images, such as product photos, are kept."
+  },
+  "rescan": {
+    "message": "Recheck page"
+  },
+  "reset": {
+    "message": "Reset this website"
+  },
+  "localSettings": {
+    "message": "Settings stay in this browser."
+  },
+  "privacy": {
+    "message": "Privacy"
+  },
+  "disabledGlobal": {
+    "message": "Adjustments are disabled while the global switch is OFF."
+  },
+  "disabledSite": {
+    "message": "Adjustments are disabled while this website is OFF."
+  },
+  "disabledNative": {
+    "message": "Adjustments are disabled while using the website's dark mode."
+  },
+  "disabledInactive": {
+    "message": "Adjustments are disabled while no changes are being applied."
+  },
+  "statusActive": {
+    "message": "Dark appearance applied"
+  },
+  "statusNative": {
+    "message": "Using the website's dark mode"
+  },
+  "statusOff": {
+    "message": "Adjustments paused"
+  },
+  "statusWaiting": {
+    "message": "Checking page…"
+  },
+  "reloadPage": {
+    "message": "Please reload the page"
+  },
+  "saving": {
+    "message": "Saving…"
+  },
+  "saved": {
+    "message": "Saved"
+  },
+  "saveFailed": {
+    "message": "Could not save. Please try again."
+  },
+  "rescanStarted": {
+    "message": "Rechecking the page"
+  },
+  "unsupportedBrowserPage": {
+    "message": "Browser pages cannot be modified"
+  },
+  "unsupportedPage": {
+    "message": "This page is not supported"
+  },
+  "loadFailed": {
+    "message": "Could not load settings"
+  },
+  "badgeAuto": {
+    "message": "AUTO"
+  },
+  "reasonOff": {
+    "message": "Stopped by settings"
+  },
+  "reasonNative": {
+    "message": "Website dark theme detected"
+  },
+  "reasonActive": {
+    "message": "Bright colors adjusted automatically"
+  },
+  "popupScope": {
+    "message": "Settings for this website only"
+  },
+  "editDefaults": {
+    "message": "Edit defaults"
+  },
+  "usingSiteSettings": {
+    "message": "Custom setting"
+  },
+  "usingDefaults": {
+    "message": "Using defaults"
+  },
+  "settingsTitle": {
+    "message": "Adaptive Dark · Settings"
+  },
+  "settingsTabs": {
+    "message": "Settings and websites"
+  },
+  "settingsTab": {
+    "message": "Settings"
+  },
+  "autoSave": {
+    "message": "Automatically saved"
+  },
+  "defaultsTitle": {
+    "message": "Default settings"
+  },
+  "defaultsExplanation": {
+    "message": "These defaults apply to all websites. Changes made in the popup apply only to that website."
+  },
+  "siteScopeExplanation": {
+    "message": "Only the settings changed for this website override the defaults. Other settings follow your defaults."
+  },
+  "masterExplanation": {
+    "message": "Turn off to pause the extension on every website, including websites with custom settings."
+  },
+  "siteSettings": {
+    "message": "Website settings"
+  },
+  "resetAllSites": {
+    "message": "Delete all website settings"
+  },
+  "resetAllExplanation": {
+    "message": "$AMOUNT$ websites have custom settings. Deleting them returns every website to your current defaults.",
+    "placeholders": {
+      "amount": {
+        "content": "$1"
+      }
+    }
+  },
+  "resetSiteExplanation": {
+    "message": "Delete this website’s custom settings to use your current defaults."
+  },
+  "resetSaved": {
+    "message": "Website settings reset"
+  },
+  "previewTitle": {
+    "message": "Preview"
+  },
+  "previewText": {
+    "message": "Comfortable backgrounds. Readable text."
+  },
+  "previewExplanation": {
+    "message": "A preview of your brightness, tone and text contrast."
+  },
+  "soundHouse": {
+    "message": "Sound House"
+  },
+  "support": {
+    "message": "Support"
+  },
+  "supportTitle": {
+    "message": "Adaptive Dark · Support"
+  },
+  "supportHeading": {
+    "message": "Help improve Adaptive Dark"
+  },
+  "supportIntro": {
+    "message": "Report a problem, suggest a feature, or explore the source code."
+  },
+  "feedbackTitle": {
+    "message": "Feedback"
+  },
+  "feedbackExplanation": {
+    "message": "The form opens on Google Forms. Only the topic is prefilled. Review and submit your report there; nothing is sent automatically."
+  },
+  "reportBug": {
+    "message": "Report a bug"
+  },
+  "requestFeature": {
+    "message": "Suggest a feature"
+  },
+  "diagnosticsTitle": {
+    "message": "Diagnostic information"
+  },
+  "diagnosticsExplanation": {
+    "message": "Review this information before copying it into the optional field in the form. It includes the extension version, Chromium version, OS and appearance settings. It excludes website addresses, page text, input values and other websites’ settings."
+  },
+  "diagnosticsPage": {
+    "message": "Appearance settings for the page you opened Support from. The website address is excluded."
+  },
+  "diagnosticsDefaults": {
+    "message": "Default settings. Page-specific information is unavailable; open Support from the website’s extension popup to include its appearance settings."
+  },
+  "copyDiagnostics": {
+    "message": "Copy diagnostic information"
+  },
+  "refreshDiagnostics": {
+    "message": "Refresh information"
+  },
+  "diagnosticsCopied": {
+    "message": "Copied. Paste it into the diagnostic information field in the form."
+  },
+  "diagnosticsManualCopy": {
+    "message": "Automatic copying was unavailable. The text is selected; copy it manually."
+  },
+  "diagnosticsFailed": {
+    "message": "Could not prepare diagnostic information. You can still send feedback without it."
+  },
+  "sourceTitle": {
+    "message": "Open source"
+  },
+  "sourceExplanation": {
+    "message": "Adaptive Dark is published under the MIT license. Bug fixes, translations and other contributions are welcome."
+  },
+  "sourceCode": {
+    "message": "Source code on GitHub"
+  },
+  "license": {
+    "message": "MIT license"
+  },
+  "sponsorTitle": {
+    "message": "Support development"
+  },
+  "sponsorExplanation": {
+    "message": "Financial support is optional. Adaptive Dark remains free to use. Payments are handled on GitHub Sponsors."
+  },
+  "sponsorAction": {
+    "message": "Support on GitHub Sponsors"
+  },
+  "supportAndDiagnostics": {
+    "message": "Support and diagnostics"
+  },
+  "settingsSupportExplanation": {
+    "message": "Have a problem or an idea? Open the support page to review diagnostic information, or send feedback on Google Forms."
+  }
+}
