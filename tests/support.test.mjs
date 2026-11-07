@@ -34,7 +34,9 @@ for (const language of ['en', 'ja']) {
     await popup.waitForFunction(() => document.getElementById('support').href.includes('?tab='));
     const link = await popup.locator('#support').getAttribute('href');
     assert.equal(link, `support.html?tab=${tabId}`);
-    assert.ok((await popup.locator('body').boundingBox()).height <= 600);
+    const popupHeight = (await popup.locator('body').boundingBox()).height;
+    assert.ok(popupHeight <= 600, `Popup height: ${popupHeight}`);
+    await popup.locator('#support').scrollIntoViewIfNeeded();
     pass('compact popup passes only a local tab ID to Support');
     const outgoingBefore = outgoing.length;
     const support = await context.newPage(); await support.goto(`chrome-extension://${id}/${link}`);

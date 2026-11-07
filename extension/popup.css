@@ -22,3 +22,6 @@ footer a{color:var(--muted);text-underline-offset:2px;margin-left:6px}
 #controls:disabled{opacity:.55}#adjustments:disabled{opacity:.45}#adjustments:disabled input,#adjustments:disabled select,#adjustments:disabled button{cursor:not-allowed;accent-color:var(--muted)}
 .disabled-reason{margin:9px 0 0}[hidden]{display:none!important}
 .scope-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;font-size:11px;color:var(--muted)}.scope-row button{padding:6px 9px;font-size:11px;color:var(--accent);flex:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* Leave room for platform font differences and long hostnames. Overflow stays
+   scrollable so support and settings remain reachable within Chrome's limit. */
+body{padding:14px;max-height:600px;overflow-y:auto;scrollbar-width:thin}.status{margin:8px 0}.hint{margin:6px 0 8px}.row{margin:10px 0 5px}details{margin-top:10px;padding-top:9px}footer{margin-top:8px}
