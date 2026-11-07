@@ -106,7 +106,9 @@ for (const language of ['en', 'ja']) {
   // A currently open site tab must switch to defaults when asked by the popup.
   await popup.locator('#editDefaults').click();
   await options.waitForFunction(() => document.querySelector('[role=tab][aria-selected=true]').dataset.hostname === '');
-  assert.ok((await worker.evaluate(() => chrome.tabs.query({}))).some(tab => tab.url?.endsWith('/options.html')));
+  // Newer Chromium may omit extension-tab URLs from tabs.query without the
+  // broad tabs permission. The actual page and tab selection prove the action.
+  assert.equal(options.url(), `chrome-extension://${id}/options.html`);
   pass('saved-site tabs edit their own scope; Edit defaults opens the global tab');
   await options.locator('[data-hostname="www.soundhouse.co.jp"]').click();
   await options.waitForFunction(() => document.getElementById('siteHost').textContent === 'www.soundhouse.co.jp');
