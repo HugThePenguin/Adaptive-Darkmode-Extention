@@ -26,7 +26,7 @@ for(const locale of ['en-US','ja-JP']) {
  const output=path.join(store,'assets',language);await fs.mkdir(output,{recursive:true});
  const profile=await fs.mkdtemp(path.join(artifacts,`store-${language}-profile-`));
  const context=await chromium.launchPersistentContext(profile,{
-  ...browserOptions(),
+  ...browserOptions(locale),
   headless:true,viewport:{width:1280,height:800},locale,
   args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`,'--no-first-run',`--lang=${locale}`]
  });

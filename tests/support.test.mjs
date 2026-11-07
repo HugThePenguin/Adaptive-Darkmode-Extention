@@ -9,7 +9,7 @@ const root = path.resolve(import.meta.dirname, '..'), artifacts = path.join(root
 const extension = path.join(root, 'extension'), results = [];
 for (const language of ['en', 'ja']) {
   const context = await chromium.launchPersistentContext(await fs.mkdtemp(path.join(artifacts, `support-${language}-`)), {
-    ...browserOptions(), headless: true, viewport: { width: 1280, height: 900 }, locale: language === 'ja' ? 'ja-JP' : 'en-US',
+    ...browserOptions(language), headless: true, viewport: { width: 1280, height: 900 }, locale: language === 'ja' ? 'ja-JP' : 'en-US',
     args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`, '--no-first-run', `--lang=${language}`]
   });
   const errors = [], outgoing = [];

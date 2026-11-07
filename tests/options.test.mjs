@@ -13,7 +13,7 @@ for (const language of ['en', 'ja']) {
  const locale = language === 'ja' ? 'ja-JP' : 'en-US';
  const profile = await fs.mkdtemp(path.join(artifacts, `options-${language}-`));
  const context = await chromium.launchPersistentContext(profile, {
-  ...browserOptions(),
+  ...browserOptions(locale),
   headless: true, viewport: { width: 1280, height: 1000 }, locale,
   args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`, '--no-first-run', `--lang=${locale}`]
  });
