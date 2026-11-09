@@ -10,6 +10,7 @@ A Manifest V3 extension for Chromium browsers that darkens bright websites, adju
 - Auto mode preserves detected native dark themes. Detection is heuristic; explicit ON/OFF is available.
 - Global defaults in Settings; popup changes override only the current hostname. Unchanged fields inherit the defaults.
 - Early loading backgrounds, dynamic content, open Shadow DOM and embedded-frame handling.
+- Media-player controls retain their original appearance. OFF stops page scanning; native dark feeds avoid repeated full DOM traversal.
 - English/Japanese support forms and a diagnostic preview/copy tool that excludes website addresses, page text, input values and other sites’ settings. Nothing is submitted automatically.
 
 ## Install

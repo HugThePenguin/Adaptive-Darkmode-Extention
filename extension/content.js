@@ -55,7 +55,16 @@
   let pending = [];
   const excluded = new Set(['SCRIPT', 'STYLE', 'LINK', 'META', 'TITLE', 'NOSCRIPT', 'TEMPLATE', 'IMG', 'PICTURE', 'VIDEO', 'AUDIO', 'CANVAS', 'IFRAME', 'OBJECT', 'EMBED', 'SOURCE', 'OPTION', 'OPTGROUP']);
   const geometry = new Set(['transform', 'transform-origin', 'translate', 'rotate', 'scale', 'top', 'right', 'bottom', 'left', 'inset', 'inset-inline-start', 'inset-inline-end', 'inset-block-start', 'inset-block-end', 'width', 'height', 'min-width', 'min-height', 'max-width', 'max-height', 'z-index', 'cursor', 'opacity', 'display', 'visibility']);
-  const inertAttributes = new Set(['value', 'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-activedescendant', 'aria-controls', 'aria-autocomplete', 'aria-live', 'aria-atomic', 'aria-busy']);
+  const inertAttributes = new Set(['value', 'tabindex', 'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-activedescendant', 'aria-controls', 'aria-autocomplete', 'aria-live', 'aria-atomic', 'aria-busy', 'aria-valuenow', 'aria-valuetext', 'aria-valuemin', 'aria-valuemax']);
+  function disabled() { return !config.enabled || config.mode === 'off'; }
+  function mediaOwner(e) {
+    // closest() stops at a shadow root; continue through its host as needed.
+    for (let p = e; p; p = p.getRootNode?.().host) {
+      const owner = p.closest?.(C.mediaSelector);
+      if (owner) return owner;
+    }
+    return null;
+  }
   function isStylesheet(e) { return e.matches?.('style,link[rel~="stylesheet"]'); }
   function stylesheetNodes(nodes) {
     return [...nodes].some(n => n.nodeType === 1 && ((isStylesheet(n) && !n.hasAttribute('data-ad-sheet')) || n.querySelector('style:not([data-ad-sheet]),link[rel~="stylesheet"]')));
@@ -71,12 +80,13 @@
     return false;
   }
   const observer = new MutationObserver(changes => {
+    if (disabled() || stopped) return;
     let changed = false;
     let protectCanvas = false;
     const urgent = new Set();
     for (const change of changes) {
       const e = change.target.nodeType === 1 ? change.target : change.target.parentElement;
-      if (!e || e.closest?.('script, style[data-ad-sheet]') || e.namespaceURI === 'http://www.w3.org/2000/svg') continue;
+      if (!e || mediaOwner(e) || e.closest?.('script, style[data-ad-sheet]') || e.namespaceURI === 'http://www.w3.org/2000/svg') continue;
       if (change.type === 'childList' && e.closest('head') && !isStylesheet(e)) {
         if (stylesheetNodes([...change.addedNodes, ...change.removedNodes])) { full = true; changed = true; }
         continue;
@@ -132,6 +142,7 @@
     }
   });
   function observe() {
+    if (disabled() || stopped) return;
     for (const root of roots) observer.observe(root, { subtree: true, childList: true, attributes: true, attributeOldValue: true, characterData: true });
   }
   function parent(e) { return e.assignedSlot || e.parentElement || e.getRootNode().host || null; }
@@ -191,7 +202,7 @@
   function shield(nodes = [document.documentElement, document.body]) {
     // Protect the canvas and explicitly white inline surfaces synchronously,
     // before the browser paints. This touches bounded roots, not whole lists.
-    const elements = [...new Set(nodes)].filter(e => e?.isConnected && !excluded.has(e.tagName) && e.namespaceURI !== 'http://www.w3.org/2000/svg');
+    const elements = [...new Set(nodes)].filter(e => e?.isConnected && !excluded.has(e.tagName) && !mediaOwner(e) && e.namespaceURI !== 'http://www.w3.org/2000/svg');
     if (!elements.length) return;
     observer.disconnect();
     const canvas = elements.some(e => e === document.documentElement || e === document.body);
@@ -327,7 +338,7 @@
     return nativeDecision;
   }
   function collect(root, output, seen) {
-    if (!root || seen.has(root)) return;
+    if (!root || seen.has(root) || (root.nodeType === 1 && mediaOwner(root))) return;
     // Iterative traversal also handles deeply nested components without
     // overflowing the JavaScript call stack.
     const stack = root.nodeType === 1 ? [root] : [...(root.children || [])].reverse();
@@ -335,7 +346,7 @@
       const e = stack.pop();
       if (seen.has(e)) continue;
       seen.add(e);
-      if (excluded.has(e.tagName) || e.namespaceURI === 'http://www.w3.org/2000/svg') continue;
+      if (excluded.has(e.tagName) || e.matches?.(C.mediaSelector) || e.namespaceURI === 'http://www.w3.org/2000/svg') continue;
       output.push(e);
       for (let i = e.children.length - 1; i >= 0; i--) stack.push(e.children[i]);
       if (e.shadowRoot) {
@@ -526,9 +537,34 @@
     interactions.clear();
     if (changed) updateSheets();
   }
+  function readCanvas() {
+    // The body background propagates to an otherwise transparent HTML canvas.
+    nativeCanvas = [255, 255, 255, 1];
+    const rootStyle = getComputedStyle(document.documentElement);
+    const rootColor = color(rootStyle.backgroundColor);
+    if ((!rootColor || rootColor[3] === 0) && rootStyle.backgroundImage === 'none') {
+      const bodyColor = color(getComputedStyle(document.body).backgroundColor);
+      if (bodyColor) nativeCanvas = C.blend(bodyColor, nativeCanvas);
+    }
+  }
   function run() {
     timer = 0;
     if (!ready || !document.body || stopped) return;
+    // OFF must restore immediately, before any traversal, color sampling or
+    // stylesheet reads. Animated feeds must not keep a disabled renderer busy.
+    if (disabled()) { deactivate('off', chrome.i18n.getMessage('reasonOff')); return; }
+    // Native themes need only a small theme fingerprint check, not collection
+    // of every post/shadow control whenever an image or progress value changes.
+    if (state === 'native' && !records.size) {
+      readCanvas();
+      const decision = config.mode === 'auto' ? recognizeNative() : null;
+      if (decision && ((window !== window.top && inheritedNative) || decision.native)) {
+        lastRun = performance.now();
+        siteBackground = decision.background;
+        full = true; pending = []; dirty.clear(); shallow.clear(); interactions.clear(); needsCleanup = false;
+        publish(); return;
+      }
+    }
     // Keep IME/paste/typing responsive if a stylesheet or a large result list
     // changes at the same time. Small suggestion updates can still run now.
     if (config.enabled && config.mode !== 'off' && (full || pending.length) && (composing || performance.now() < editDeadline)) {
@@ -548,8 +584,8 @@
     if (scanAll) { pending = []; collect(document.documentElement, elements, seen); }
     else {
       for (const e of dirty) if (e.isConnected) collect(e, elements, seen);
-      for (const e of shallow) if (e.isConnected && !seen.has(e) && !excluded.has(e.tagName)) { seen.add(e); elements.push(e); }
-      for (const e of pending) if (e.isConnected && !seen.has(e)) { seen.add(e); elements.push(e); }
+      for (const e of shallow) if (e.isConnected && !seen.has(e) && !excluded.has(e.tagName) && !mediaOwner(e)) { seen.add(e); elements.push(e); }
+      for (const e of pending) if (e.isConnected && !seen.has(e) && !mediaOwner(e)) { seen.add(e); elements.push(e); }
       // Process parents first even when child-list and attribute records arrive
       // in a different order, so inherited background caches stay correct.
       elements.sort((a, b) => a === b ? 0 : a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
@@ -566,15 +602,11 @@
     // HTML propagates a body's background onto the document canvas when the
     // root is transparent. Below a short body's bounds, elementFromPoint sees
     // html even though the visible canvas is still the body's dark background.
-    nativeCanvas = [255, 255, 255, 1];
-    const rootStyle = getComputedStyle(document.documentElement);
-    const rootColor = color(rootStyle.backgroundColor);
-    if ((!rootColor || rootColor[3] === 0) && rootStyle.backgroundImage === 'none') {
-      const bodyColor = color(getComputedStyle(document.body).backgroundColor);
-      if (bodyColor) nativeCanvas = C.blend(bodyColor, nativeCanvas);
+    readCanvas();
+    for (const [e, r] of records) if (!e.isConnected || ((scanAll || needsCleanup) && mediaOwner(e))) {
+      restore(e, r); if (r.id) e.removeAttribute(attr); unmark(e, r); records.delete(e); selected.delete(e);
     }
-    for (const [e, r] of records) if (!e.isConnected) { restore(e, r); if (r.id) e.removeAttribute(attr); unmark(e, r); records.delete(e); }
-    for (const root of roots) if (root.host && !root.host.isConnected) { sheets.get(root)?.remove(); sheets.delete(root); selectSheets.get(root)?.remove(); selectSheets.delete(root); roots.delete(root); }
+    for (const root of roots) if (root.host && (!root.host.isConnected || mediaOwner(root.host))) { sheets.get(root)?.remove(); sheets.delete(root); selectSheets.get(root)?.remove(); selectSheets.delete(root); roots.delete(root); }
     needsCleanup = false;
     if (scanAll) {
       const decision = config.enabled && config.mode === 'auto' ? recognizeNative() : null;
@@ -617,8 +649,17 @@
   }
   function schedule(forceFull = false) {
     if (forceFull) full = true;
-    if (timer || !ready || stopped) return;
+    if (timer || !ready || stopped || disabled()) return;
     timer = setTimeout(run, Math.max(70, 280 - (performance.now() - lastRun)));
+  }
+  function deactivate(nextState, nextReason) {
+    observer.disconnect(); clearTimeout(timer); timer = 0;
+    removeGuard(); suspend(); cleanup();
+    roots.clear(); roots.add(document);
+    pending = []; dirty.clear(); shallow.clear(); interactions.clear(); needsCleanup = false; full = true;
+    state = nextState; reason = nextReason;
+    siteBackground = document.body ? originalSurface(document.body) : null;
+    publish();
   }
   async function refresh() {
     const version = ++refreshVersion;
@@ -632,6 +673,7 @@
       inheritedNative = nextNative;
       ready = true;
       observer.disconnect();
+      if (disabled()) { deactivate('off', chrome.i18n.getMessage('reasonOff')); return; }
       if (config.enabled && config.mode !== 'off' && (state !== 'native' || config.mode === 'on')) { guard(); shield(); }
       else { removeGuard(); observe(); }
       schedule(true);
@@ -653,16 +695,18 @@
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { nativeDecision = null; schedule(true); });
   document.addEventListener('transitionend', e => { if (e.target === document.documentElement || e.target === document.body) schedule(true); }, true);
   for (const event of ['pointerover', 'pointerout', 'focusin', 'focusout']) document.addEventListener(event, e => {
+    if (state !== 'active' || disabled()) return;
     const target = eventTarget(e);
-    if (!(target instanceof Element) || target === document.documentElement || target === document.body) return;
+    if (!(target instanceof Element) || mediaOwner(target) || target === document.documentElement || target === document.body) return;
     // Media also bubble pointer events; inspect their painted ancestors without
     // restoring/writing those containers or visiting their entire subtrees.
     for (let p = target; p && p !== document.documentElement && p !== document.body; p = parent(p)) if (records.has(p)) interactions.add(p);
     schedule();
   }, { passive: true, capture: true });
   document.addEventListener('change', e => {
-    if (!(e.target instanceof Element) || excluded.has(e.target.tagName)) return;
-    dirty.add(e.target); schedule();
+    const target = eventTarget(e);
+    if (state !== 'active' || disabled() || !(target instanceof Element) || mediaOwner(target) || excluded.has(target.tagName)) return;
+    dirty.add(target); schedule();
   }, { passive: true, capture: true });
   document.addEventListener('visibilitychange', () => { if (!document.hidden) schedule(true); });
   function editing(e) {
@@ -691,13 +735,13 @@
   // Poll read-only CSSOM state, rather than rewriting the entire DOM every five
   // seconds. Late open shadow roots are discovered without touching their host.
   setInterval(() => {
-    if (document.hidden || stopped) return;
+    if (document.hidden || stopped || disabled()) return;
+    if (state === 'native') { schedule(); return; }
     const next = stylesheetSignature();
     if (next !== stylesheetState) { stylesheetState = next; schedule(true); }
     for (const root of [...roots]) for (const e of root.querySelectorAll('*')) {
-      if (e.shadowRoot && !roots.has(e.shadowRoot)) { roots.add(e.shadowRoot); dirty.add(e); schedule(); }
+      if (e.shadowRoot && !roots.has(e.shadowRoot) && !mediaOwner(e)) { roots.add(e.shadowRoot); dirty.add(e); schedule(); }
     }
-    if (state === 'native' || state === 'off') schedule();
   }, 5000);
   // Apply a fallback before any asynchronous message/storage round trip. A
   // direct local read can release it sooner when the extension is globally OFF.
@@ -707,7 +751,7 @@
     const initial = C.effective(preferences, window === window.top ? location.hostname : '');
     config = initial; themePalette = C.palette(config.temperature);
     observer.disconnect();
-    if (!initial.enabled || initial.mode === 'off') { removeGuard(); suspend(); cleanup(); }
+    if (!initial.enabled || initial.mode === 'off') { deactivate('off', chrome.i18n.getMessage('reasonOff')); }
     else guard(initial);
     observe();
   }).catch(() => {});

@@ -19,9 +19,10 @@
     "test:robustness": "node tests/robustness.test.mjs",
     "test:http": "node tests/http-router.test.mjs",
     "test:support": "node tests/support.test.mjs",
-    "test:ci": "npm test && npm run test:support && npm run test:http && npm run test:loading && npm run test:options && npm run test:performance && npm run test:search && npm run test:scroll && npm run test:native && npm run test:robustness"
+    "test:media": "node tests/media-feed.test.mjs",
+    "test:ci": "npm test && npm run test:support && npm run test:http && npm run test:loading && npm run test:options && npm run test:performance && npm run test:search && npm run test:scroll && npm run test:native && npm run test:robustness && npm run test:media"
   },
-  "version": "1.6.0",
+  "version": "1.6.1",
   "license": "MIT",
   "description": "Adaptive Dark: local, adjustable dark appearance for Chromium websites.",
   "engines": {

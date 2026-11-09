@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.1 — 2026-11-09
+
+- Stop DOM observation, queued color passes and stylesheet/shadow discovery while OFF, and restore styles immediately without scanning the feed.
+- Check native dark themes using the existing theme fingerprint instead of traversing all posts on image/media updates.
+- Preserve custom video players, including Reddit player hosts, overlays, progress gradients and light/shadow-DOM controls, in both loading CSS and the renderer.
+- Ignore nonvisual slider accessibility updates and add media-feed, real playback, pointer/keyboard seeking and OFF regression coverage.
+
 ## 1.6.0 — 2026-11-08
 
 - Publish the project under MIT, including original icons and documentation.

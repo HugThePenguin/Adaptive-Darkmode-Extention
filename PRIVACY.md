@@ -2,7 +2,7 @@ HUGTHEPENGUIN
 
 # Adaptive Dark — Privacy Policy
 
-Effective date: November 8, 2026 · Extension version: 1.6.0
+Effective date: November 8, 2026 · Extension version: 1.6.1
 
 Adaptive Dark is published by HugThePenguin. It adjusts website colors to provide a darker appearance, readable text, and adjustable color temperature. The extension operates locally in your browser.
 
@@ -43,7 +43,7 @@ If the extension's data practices change, this policy and the store disclosures 
 
 # やさしいダーク — プライバシーポリシー
 
-適用日：2026年11月8日 · 対象バージョン：1.6.0
+適用日：2026年11月8日 · 対象バージョン：1.6.1
 
 公開者はHugThePenguinです。本拡張機能はWebサイトの背景・文字・色温度を調整し、ブラウザ内で動作します。
 

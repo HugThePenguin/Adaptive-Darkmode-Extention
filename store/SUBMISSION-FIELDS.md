@@ -1,6 +1,6 @@
 # Chrome Web Store submission fields
 
-Version: 1.6.0 · Publisher: HugThePenguin · Contact: penguin.x.product@gmail.com
+Version: 1.6.1 · Publisher: HugThePenguin · Contact: penguin.x.product@gmail.com
 
 以下の英文を該当欄へコピーできます。現行実装に合わせて、公開者へ送信しないローカル処理も開示しています。
 

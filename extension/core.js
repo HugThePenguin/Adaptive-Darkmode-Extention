@@ -46,12 +46,15 @@
     }
     return result;
   }
+  // Players own their overlays, progress gradients and shadow-DOM controls.
+  // Keep these boundaries shared by the startup CSS and the DOM renderer.
+  const mediaSelector = 'shreddit-player,shreddit-player-2,reddit-video-player,media-controller,media-player,video-js';
   // Fallback rules cover new content until inline plans are ready. Photos,
   // media, SVG artwork and native select options stay untouched.
   const loadingCSS = token => ['loading', 'active'].map(phase => {
     const root = `html[data-ad-phase="${phase}"]`;
     return `${root}{background-color:var(--ad-loading-bg,#1a1612)!important;color-scheme:dark!important}` +
-      `${root} body:not([data-ad-rendered="${token}"]),${root} body :where(*):not([data-ad-rendered="${token}"]):not(img,picture,video,audio,canvas,svg,svg *,iframe,object,embed,option,optgroup){background-color:var(--ad-loading-bg,#1a1612)!important;background-image:none!important;color:var(--ad-loading-fg,#eee1cc)!important;-webkit-text-fill-color:var(--ad-loading-fg,#eee1cc)!important}`;
+      `${root} body:not([data-ad-rendered="${token}"]),${root} body :where(*):not([data-ad-rendered="${token}"]):not(img,picture,video,audio,canvas,svg,svg *,iframe,object,embed,option,optgroup):not(${mediaSelector}):not(:is(${mediaSelector}) *){background-color:var(--ad-loading-bg,#1a1612)!important;background-image:none!important;color:var(--ad-loading-fg,#eee1cc)!important;-webkit-text-fill-color:var(--ad-loading-fg,#eee1cc)!important}`;
   }).join('\n');
   function parse(input) {
     if (!input) return null;
@@ -198,5 +201,5 @@
     });
     return { image: mapped, colors };
   }
-  globalThis.ADCore = Object.freeze({ defaults, settings, preferences, effective, appearance, loadingCSS, parse, luminance, blend, contrast, css, tone, palette, sitePalette, base, background, foreground, gradient });
+  globalThis.ADCore = Object.freeze({ defaults, settings, preferences, effective, appearance, mediaSelector, loadingCSS, parse, luminance, blend, contrast, css, tone, palette, sitePalette, base, background, foreground, gradient });
 })();
